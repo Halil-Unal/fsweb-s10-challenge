@@ -91,9 +91,10 @@ export default function PostForm() {
           type="submit"
           className="myButton"
           onClick={notify}>
-          <ToastContainer />
+          
           Ekle
         </button>
+        <ToastContainer />
       </form>
     </div>
   );

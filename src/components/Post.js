@@ -33,9 +33,10 @@ export default function Post({ item }) {
       ))}
 
       <button className="text-xs text-amber-600 mt-4 underline" onClick={handleClick}>
-          <ToastContainer />
+          
         Bu notu sil
       </button>
+      <ToastContainer />
     </div>
   );
 }

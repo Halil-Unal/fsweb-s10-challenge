@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { nanoid } from "nanoid";
 import { useHistory } from "react-router";
 import Gratitude from "./../assets/grForm.png";
-
+import {  useDispatch } from "react-redux";
+import { notEkleAPI } from "../actions";
 export default function PostForm() {
   const {
     register,
-    handleSubmit,
+    handleSubmit ,
     formState: { errors },
   } = useForm({ mode: "onChange" });
-
+  const dispatch = useDispatch();
   const history = useHistory();
 
   function onSubmit(data) {
+    
     const yeniNot = {
       id: nanoid(),
       date: Date(),
@@ -21,12 +23,18 @@ export default function PostForm() {
         .filter((v) => v !== "")
         .join("|"),
     };
-
+   
+   
+    dispatch(notEkleAPI(yeniNot));
     // burada ilgili eylemi dispatch edin
     // toast mesajı gösterin
     // sonra aşağıdaki satırı aktifleştirin
-    // setTimeout(() => history.push("/notlar"), 2000);
+    setTimeout(() => history.push("/notlar"), 2000);
   }
+ 
+     
+   
+    
 
   const inputCx = "border border-zinc-300 h-9 rounded-none text-sm px-2 w-full";
 
@@ -79,6 +87,7 @@ export default function PostForm() {
         <button
           type="submit"
           className="myButton"
+          
         >
           Ekle
         </button>

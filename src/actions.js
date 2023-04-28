@@ -16,7 +16,7 @@ export const notEkleAPI = (yeniNot) => (dispatch) => {
     .post("https://httpbin.org/anything", yeniNot)
     .then((res) => {
       if (res.status === 200) {
-        const data = JSON.parse(res.data.data);
+        const data = (res.data.json);
         dispatch({ type: NOT_EKLE, payload: data });
       }
     })

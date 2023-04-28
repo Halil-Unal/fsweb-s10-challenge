@@ -29,6 +29,7 @@ export const notSilAPI = (id) => (dispatch) => {
     .then((res) => {
       if (res.status === 200) {
         const data = JSON.parse(res.data.data);
+       // const data = (res.data.json);
         dispatch({ type: NOT_SIL, payload: data });
       }
     })

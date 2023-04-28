@@ -25,12 +25,11 @@ function localStorageStateOku(key) {
 
 function baslangicNotlariniGetir(key) {
   const eskiNotlar = localStorage.getItem(key);
-
   if (eskiNotlar) {
     return localStorageStateOku(key);
   } else {
     return baslangicDegerleri
-  }
+  } 
 }
 
 export function myReducer(state = baslangicNotlariniGetir(s10chLocalStorageKey), action) {

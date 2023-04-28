@@ -3,8 +3,6 @@ import {
   NOT_SIL
 } from "./actions";
 
-
-
 const s10chLocalStorageKey = "s10ch";
 
 const baslangicDegerleri = {
@@ -34,25 +32,26 @@ function baslangicNotlariniGetir(key) {
     return baslangicDegerleri
   }
 }
-export function myReducer(state = baslangicDegerleri, action) {
+
+export function myReducer(state = baslangicNotlariniGetir(s10chLocalStorageKey), action) {
   switch (action.type) {
     case NOT_EKLE:
-      return {
+      const yeniStateEkle = {
         ...state,
         notlar: [...state.notlar, action.payload]
       };
+      localStorageStateYaz(s10chLocalStorageKey, yeniStateEkle);
+      return yeniStateEkle;
     
+    case NOT_SIL:
+      const updatedNotes = state.notlar.filter(note => note.id !== action.payload.id);
+      const yeniStateSil = {
+        ...state,
+        notlar: updatedNotes,
+      };
+      localStorageStateYaz(s10chLocalStorageKey, yeniStateSil);
+      return yeniStateSil;
 
-  
-      case NOT_SIL:
-  const updatedNotes = state.notlar.filter(note => note.id !== action.payload.id);
-  return {
-    ...state,
-    notlar: updatedNotes,
-  };
-
-
-     
     default:
       return state;
   }
